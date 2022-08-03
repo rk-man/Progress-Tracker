@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import PropTypes from "prop-types";
+
 const ProgressContext = createContext();
 
 //create context -> provide the context to the components -> consume the properties in the value inside the components
