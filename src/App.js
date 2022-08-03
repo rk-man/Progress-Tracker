@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Main from "./components/Main";
+
+import { ProgressContextProvider } from "./contexts/ProgressContext";
+
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
+import Post from "./components/Post";
+
+import AboutPage from "./components/AboutPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ProgressContextProvider>
+            {/* HEADER WILL BE DISPLAYED ON ALL ROUTES */}
+            <Header />
+            <Router>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Main />
+                                <Link to="/about">go to about</Link>
+                            </>
+                        }
+                    ></Route>
+                </Routes>
+                <Routes>
+                    <Route path="/about" element={<AboutPage />}></Route>
+                    <Route path="/post/*" element={<Post />}></Route>
+                </Routes>
+            </Router>
+        </ProgressContextProvider>
+    );
 }
 
 export default App;
